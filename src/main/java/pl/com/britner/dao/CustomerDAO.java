@@ -5,10 +5,9 @@ import pl.com.britner.model.Customer;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class UserDAO extends CommonDAO {
+public class CustomerDAO extends CommonDAO {
 
-
-    public void insertCustomer(Customer customer) {
+    public static void insertCustomer(Customer customer) {
         try {
             String sql = "INSERT INTO customer (name, surname, age, city) VALUES (?,?,?,?)";
             PreparedStatement myStmt = dbConnection.getMyConnection().prepareStatement(sql);
@@ -23,8 +22,4 @@ public class UserDAO extends CommonDAO {
             exc.printStackTrace();
         }
     }
-
-
-
-
 }

@@ -3,6 +3,7 @@ package pl.com.britner.model;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @lombok.Setter
@@ -27,7 +28,7 @@ public class Customer implements Serializable {
         private String name;
         private String surname;
         private String city;
-        private List<Contact> contactList;
+        private List<Contact> contactList = new ArrayList<>();
 
         public customerBuilder id(Long id) {
             this.id = id;
@@ -69,5 +70,12 @@ public class Customer implements Serializable {
             customer.contactList = this.contactList;
             return customer;
         }
+    }
+
+    public void addContact(Contact contact) {
+        if (contactList.isEmpty()) {
+            contactList = new ArrayList<>();
+        }
+        contactList.add(contact);
     }
 }

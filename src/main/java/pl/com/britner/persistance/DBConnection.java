@@ -14,9 +14,9 @@ public class DBConnection {
 
         try {
             DBProperties dbProperties = new DBProperties();
-            String url = dbProperties.getUrl();
-            String password = dbProperties.getPassword();
-            String user = dbProperties.getUser();
+            String url = dbProperties.getUrl(); //"jdbc:mysql://127.0.0.1:3306/customer?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+            String password = dbProperties.getPassword();//"password";//dbProperties.getPassword();
+            String user = dbProperties.getUser();//"root";//dbProperties.getUser();
 
             myConnection = DriverManager.getConnection(url, user, password);
         } catch (SQLException exc) {

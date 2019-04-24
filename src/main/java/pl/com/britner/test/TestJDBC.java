@@ -12,11 +12,11 @@ public class TestJDBC {
 
         try {
 
-            System.out.println("Connectiong to DB" + url );
+            System.out.println("Connecting to DB" + url );
 
             DriverManager.getConnection(url, user, pass);
 
-            System.out.println("Connection succesfull");
+            System.out.println("Connection successful");
 
         } catch (Exception exc) {
             exc.printStackTrace();

@@ -6,9 +6,8 @@ import java.util.Properties;
 
 public class DBProperties {
 
-
     private Properties getProperties() {
-        String fullPath = "/config/db.properties";
+        String fullPath = "src/main/resources/db.properties";
         Properties properties = new Properties();
         try {
             properties.load(new FileInputStream(fullPath));
