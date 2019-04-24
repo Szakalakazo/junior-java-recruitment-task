@@ -8,21 +8,24 @@ import java.util.List;
 
 public class CustomerRepository {
 
-    private static final List<Customer> customerList = new ArrayList<>();
+    private List<Customer> customerList = new ArrayList<>();
 
-    public static List<Customer> getCustomerList() {
+    public List<Customer> getCustomerList() {
         if (customerList.isEmpty()) {
             fillCustomerList();
         }
         return customerList;
     }
 
-    private static void fillCustomerList() {
+    public void addCustomer(Customer customer)  {
+        customerList.add(customer);
+    }
+
+    private void fillCustomerList() {
         customerList.add(new Customer.customerBuilder()
                 .id(1L)
                 .name("Bob")
                 .surname("Brink")
-                .age(22)
                 .city("NY")
                 .contactList(new Contact.contactBuilder()
                         .type(1)
@@ -36,6 +39,13 @@ public class CustomerRepository {
                 .surname("Fox")
                 .age(26)
                 .city("Los Santos")
+                .buildCustomer());
+
+        customerList.add(new Customer.customerBuilder()
+                .id(3L)
+                .contactList(new Contact.contactBuilder()
+                        .contact("555-555")
+                        .buildContact())
                 .buildCustomer());
     }
 }
