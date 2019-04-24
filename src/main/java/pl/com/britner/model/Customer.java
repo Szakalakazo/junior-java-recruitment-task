@@ -23,8 +23,8 @@ public class Customer implements Serializable {
     @ToString
     public static final class customerBuilder {
 
-        private int age;
         private Long id;
+        private int age;
         private String name;
         private String surname;
         private String city;

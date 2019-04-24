@@ -1,3 +1,4 @@
+/*
 package pl.com.britner.dao;
 
 import pl.com.britner.model.Contact;
@@ -21,6 +22,5 @@ class ContactDAO extends CommonDAO {
             exc.printStackTrace();
         }
     }
-
-
 }
+*/

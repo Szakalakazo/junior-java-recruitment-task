@@ -19,6 +19,7 @@ public class CustomerRepository {
 
     private static void fillCustomerList() {
         customerList.add(new Customer.customerBuilder()
+                .id(1L)
                 .name("Bob")
                 .surname("Brink")
                 .age(22)
@@ -30,6 +31,7 @@ public class CustomerRepository {
                 .buildCustomer());
 
         customerList.add(new Customer.customerBuilder()
+                .id(2L)
                 .name("Sue")
                 .surname("Fox")
                 .age(26)
