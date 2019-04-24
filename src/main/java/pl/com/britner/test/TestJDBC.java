@@ -2,7 +2,7 @@ package pl.com.britner.test;
 
 import java.sql.DriverManager;
 
-public class TestJDBC {
+class TestJDBC {
 
     public static void main(String[] args) {
 

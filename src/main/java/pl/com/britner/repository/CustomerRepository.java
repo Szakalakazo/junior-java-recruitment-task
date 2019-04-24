@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CustomerRepository {
 
-    private static List<Customer> customerList = new ArrayList<>();
+    private static final List<Customer> customerList = new ArrayList<>();
 
     public static List<Customer> getCustomerList() {
         if (customerList.isEmpty()) {

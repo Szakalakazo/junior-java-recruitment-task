@@ -5,11 +5,11 @@ import pl.com.britner.model.Contact;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ContactDAO extends CommonDAO {
+class ContactDAO extends CommonDAO {
 
     public static void insertContact(Contact contact) {
         try {
-            String sql = "INSERT INTO contact (user_id, type, contact) VALUES (?,?,?)";
+            String sql = "INSERT INTO " + contactTableName + "(user_id, type, contact) VALUES (?,?,?)";
             PreparedStatement myStmt = dbConnection.getMyConnection().prepareStatement(sql);
             myStmt.setInt(1, Math.toIntExact(contact.getCustomerId()));
             myStmt.setInt(2, contact.getType());
