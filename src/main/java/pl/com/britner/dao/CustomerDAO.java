@@ -9,7 +9,9 @@ public class CustomerDAO extends CommonDAO {
 
     public static void insertCustomer(Customer customer) {
         try {
-            String sql = "INSERT INTO " + customerTableName + " (name, surname, age, city) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO " + customerTableName + " (name, surname, age, city, ) VALUES (?,?,?,?)";
+
+
             PreparedStatement myStmt = dbConnection.getMyConnection().prepareStatement(sql);
             myStmt.setString(1, customer.getName());
             myStmt.setString(2, customer.getSurname());

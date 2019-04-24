@@ -55,12 +55,15 @@ public class Customer implements Serializable {
             return this;
         }
 
-        public customerBuilder contactList(List<Contact> contactList) {
-            this.contactList = contactList;
+        public customerBuilder contactList(Contact contact) {
+            if (contactList.isEmpty()) {
+                contactList = new ArrayList<>();
+            }
+            contactList.add(contact);
             return this;
         }
 
-        public Customer build() {
+        public Customer buildCustomer() {
             Customer customer = new Customer();
             customer.id = this.id;
             customer.age = this.age;
@@ -70,12 +73,5 @@ public class Customer implements Serializable {
             customer.contactList = this.contactList;
             return customer;
         }
-    }
-
-    public void addContact(Contact contact) {
-        if (contactList.isEmpty()) {
-            contactList = new ArrayList<>();
-        }
-        contactList.add(contact);
     }
 }

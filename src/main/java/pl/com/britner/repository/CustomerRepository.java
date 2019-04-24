@@ -1,5 +1,6 @@
 package pl.com.britner.repository;
 
+import pl.com.britner.model.Contact;
 import pl.com.britner.model.Customer;
 
 import java.util.ArrayList;
@@ -22,13 +23,17 @@ public class CustomerRepository {
                 .surname("Brink")
                 .age(22)
                 .city("NY")
-                .build());
+                .contactList(new Contact.contactBuilder()
+                        .type(1)
+                        .contact("555-555")
+                        .buildContact())
+                .buildCustomer());
 
         customerList.add(new Customer.customerBuilder()
                 .name("Sue")
                 .surname("Fox")
                 .age(26)
                 .city("Los Santos")
-                .build());
+                .buildCustomer());
     }
 }

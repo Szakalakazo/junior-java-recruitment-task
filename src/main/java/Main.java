@@ -7,15 +7,14 @@ class Main {
     public static void main(String[] args) {
 
         Customer c1 = CustomerRepository.getCustomerList().get(0);
-        CustomerDAO.insertCustomer(c1);
-        c1.addContact(new Contact.contactBuilder()
-                .customerId(1L)
-                .id(3L)
-                .type(1)
-                .contact("test@gmail.com")
-                .build());
-        System.out.println(c1.getContactList().get(0));
+//        CustomerDAO.insertCustomer(c1);
+        System.out.println(c1.getName());
+        System.out.println(c1.getSurname());
+        System.out.println(c1.getAge());
+        System.out.println(c1.getCity());
+        Contact c = c1.getContactList().get(0);
+        System.out.println(c.getType());
+        System.out.println(c.getContact());
 
-        //ContactDAO.insertContact(c1.getContactList().get(0));
     }
 }
