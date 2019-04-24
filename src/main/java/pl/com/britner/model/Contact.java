@@ -1,9 +1,15 @@
 package pl.com.britner.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
+@Setter
+@Getter
 public class Contact implements Serializable {
 
+    @Getter
     private static final long serialVersionUID = 5429977054591803420L;
 
     private Long id;
