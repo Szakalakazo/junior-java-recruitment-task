@@ -1,13 +1,14 @@
 package pl.com.britner.service;
 
-import pl.com.britner.util.CSVReaderText;
-import pl.com.britner.util.TextFileReader;
+import pl.com.britner.util.CSVReader;
+import pl.com.britner.util.FileReader;
 
 public class CustomerService {
 
+    // TODO: 25.04.2019 wybór miedzy csv a txt
     public String[] getDataRows() {
-        TextFileReader textFileReader = new CSVReaderText();
-        return textFileReader.getTextList().toArray(new String[0]);
+        FileReader fileReader = new CSVReader();
+        return fileReader.getTextList().toArray(new String[0]);
     }
 
     public boolean isFieldValid(String field) {

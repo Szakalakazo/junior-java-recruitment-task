@@ -3,12 +3,15 @@ package pl.com.britner.util;
 
 import pl.com.britner.config.FileProperties;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class TextFileReader {
+public abstract class FileReader {
 
-    final String filePath = FileProperties.getFilePath();
+    final String filePath = FileProperties.getCSVFilePath();
+
+    File file = new File(FileProperties.getXMLFilePath());
 
     private List<String> stringList = new ArrayList<>();
 

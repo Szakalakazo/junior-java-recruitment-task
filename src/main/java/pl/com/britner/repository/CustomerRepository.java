@@ -1,5 +1,6 @@
 package pl.com.britner.repository;
 
+import pl.com.britner.dao.CustomerDAO;
 import pl.com.britner.model.Contact;
 import pl.com.britner.model.Customer;
 import pl.com.britner.service.ContactService;
@@ -11,18 +12,15 @@ import java.util.List;
 
 public class CustomerRepository {
 
-    private CustomerService customerService = new CustomerService();
-
-    private ContactService contactService = new ContactService();
+    private Customer tempCustomer;
 
     private List<Customer> customerList = new ArrayList<>();
 
-    private Customer tempCustomer;
+    private ContactService contactService = new ContactService();
 
-    private Contact tempContact;
+    private CustomerService customerService = new CustomerService();
 
     private String[] dataRows = customerService.getDataRows();
-
 
     private void fillCustomerList() {
         for (String dataRow : dataRows) {
@@ -46,12 +44,11 @@ public class CustomerRepository {
 
     private void createContact(String[] contacts) {
         for (String contact : contacts) {
-            tempContact = new Contact.contactBuilder()
+            Contact tempContact = new Contact.contactBuilder()
                     .contact(contact)
                     .type(contactService.getContactType(contact))
                     .buildContact();
             tempCustomer.addToContactList(tempContact);
-
         }
     }
 

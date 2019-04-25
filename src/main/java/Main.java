@@ -1,9 +1,8 @@
 import pl.com.britner.dao.CustomerDAO;
 import pl.com.britner.model.Customer;
 import pl.com.britner.repository.CustomerRepository;
-import pl.com.britner.util.CSVReaderText;
+import pl.com.britner.util.XMLReader;
 
-import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
@@ -21,7 +20,9 @@ class Main {
             System.out.println();
         }*/
 
-        CustomerDAO.insertCustomer(repository.getCustomerList());
+//        CustomerDAO.insertCustomer(repository.getCustomerList());
 
+        XMLReader xmlReader = new XMLReader();
+        xmlReader.readFile();
     }
 }

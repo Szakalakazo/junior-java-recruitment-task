@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CSVReaderText extends TextFileReader {
+public class CSVReader extends FileReader {
 
     private List<String> strings = new ArrayList<>();
 
@@ -12,7 +12,7 @@ public class CSVReaderText extends TextFileReader {
     public void readFile() {
         String line;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(super.filePath))) {
+        try (BufferedReader br = new BufferedReader(new java.io.FileReader(super.filePath))) {
             while ((line = br.readLine()) != null) {
                 if (line.length() > 0) {
                     strings.add(line);

@@ -18,7 +18,11 @@ public class FileProperties {
         return properties;
     }
 
-    public static String getFilePath() {
-        return getProperties().getProperty("file-location");
+    public static String getCSVFilePath() {
+        return getProperties().getProperty("csv.file");
+    }
+
+    public static String getXMLFilePath() {
+        return getProperties().getProperty("xml.file");
     }
 }
