@@ -40,6 +40,7 @@ public class CustomerRepository {
                 .name(customerDetails[0])
                 .surname(customerDetails[1])
                 .age(Integer.valueOf(customerService.replaceNullOrEmptyField(customerDetails[2])))
+                .city(customerDetails[3])
                 .buildCustomer();
     }
 
@@ -54,7 +55,6 @@ public class CustomerRepository {
         }
     }
 
-
     public List<Customer> getCustomerList() {
         if (customerList.isEmpty()) {
             fillCustomerList();
@@ -62,7 +62,8 @@ public class CustomerRepository {
         return customerList;
     }
 
-    public void addCustomer(Customer customer) {
-        customerList.add(customer);
+    private void addCustomer(Customer customer) {
+        if (customerService.isFieldValid(customer.getName()) && customerService.isFieldValid(customer.getSurname()))
+            customerList.add(customer);
     }
 }

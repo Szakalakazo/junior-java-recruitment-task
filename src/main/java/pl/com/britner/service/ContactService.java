@@ -1,7 +1,5 @@
 package pl.com.britner.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,8 +13,6 @@ public class ContactService {
 
     private static final Pattern JABBER_VALIDATOR =
             Pattern.compile("^(?:([^@/<>'\"]+)@)?([^@/<>'\"]+)(?:/([^<>'\"]*))?$", Pattern.CASE_INSENSITIVE);
-
-    private List<Pattern> matchers = new ArrayList<>();
 
     public int getContactType(String pattern) {
        if (doesMatchEmail(pattern)) return 1;

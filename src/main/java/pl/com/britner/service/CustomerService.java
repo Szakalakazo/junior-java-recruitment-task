@@ -10,11 +10,11 @@ public class CustomerService {
         return textFileReader.getTextList().toArray(new String[0]);
     }
 
-    private boolean isFieldValid(String field) {
-        return (field == null || field.isEmpty());
+    public boolean isFieldValid(String field) {
+        return !(field == null || field.isEmpty());
     }
 
     public String replaceNullOrEmptyField(String field) {
-        return isFieldValid(field) ? field = "0" : field;
+        return isFieldValid(field) ? field : "0";
     }
 }
