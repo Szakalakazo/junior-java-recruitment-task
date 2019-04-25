@@ -1,20 +1,21 @@
 package pl.com.britner.util;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CSVReaderText extends TextFileReader {
 
+    private List<String> strings = new ArrayList<>();
+
     @Override
     public void readFile() {
+        String line;
 
         try (BufferedReader br = new BufferedReader(new FileReader(super.filePath))) {
-            String line;
             while ((line = br.readLine()) != null) {
-                super.stringList.add(line);
-                System.out.println(line);
+                strings.add(line);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -22,6 +23,7 @@ public class CSVReaderText extends TextFileReader {
 
     @Override
     public List<String> getTextList() {
-        return stringList;
+        readFile();
+        return strings;
     }
 }

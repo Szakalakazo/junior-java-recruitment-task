@@ -2,22 +2,41 @@ package pl.com.britner.repository;
 
 import pl.com.britner.model.Contact;
 import pl.com.britner.model.Customer;
+import pl.com.britner.service.CustomerService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CustomerRepository {
 
+    private CustomerService service = new CustomerService();
+
     private List<Customer> customerList = new ArrayList<>();
+
+    private void createCustomerList() {
+        String[] dataRows = service.getDataRows();
+        for (String row : dataRows) {
+            String[] split = Arrays.copyOfRange(row.split(","), 0, 4);
+
+            Customer tempCustomer = new Customer.customerBuilder()
+                    .name(split[0])
+                    .surname(split[1])
+                    .age(Integer.valueOf(service.replaceNullOrEmptyField(split[2])))
+                    .buildCustomer();
+            customerList.add(tempCustomer);
+        }
+    }
+
 
     public List<Customer> getCustomerList() {
         if (customerList.isEmpty()) {
-            fillCustomerList();
+            createCustomerList();
         }
         return customerList;
     }
 
-    public void addCustomer(Customer customer)  {
+    public void addCustomer(Customer customer) {
         customerList.add(customer);
     }
 

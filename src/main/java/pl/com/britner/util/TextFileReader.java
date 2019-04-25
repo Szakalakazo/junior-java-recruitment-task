@@ -10,7 +10,7 @@ public abstract class TextFileReader {
 
     final String filePath = FileProperties.getFilePath();
 
-    List<String> stringList = new ArrayList<>();
+    private List<String> stringList = new ArrayList<>();
 
     abstract void readFile();
 

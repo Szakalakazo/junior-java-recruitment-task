@@ -1,25 +1,21 @@
 package pl.com.britner.service;
 
-import pl.com.britner.repository.CustomerRepository;
 import pl.com.britner.util.CSVReaderText;
 import pl.com.britner.util.TextFileReader;
 
 
 public class CustomerService {
 
-    private CustomerRepository customerRepository = new CustomerRepository();
-
-    public void fillCustomerList() {
+    public String[] getDataRows() {
         TextFileReader textFileReader = new CSVReaderText();
+        return textFileReader.getTextList().toArray(new String[0]);
+    }
 
-        // rzutowanie list wierszy na tablice wierszy
-        //String[] dataRows = textFileReader.readFile().toArray(new String[0]);
+    private boolean isFieldValid(String field) {
+        return (field == null || field.isEmpty());
+    }
 
-        /*for (String row : dataRows) {
-            String[] split = row.split(",");
-            String[] customerDetails = Arrays.copyOfRange(split, 0, 4);
-            String[] contactDetails = Arrays.copyOfRange(split, 4, split.length);
-
-        }*/
+    public String replaceNullOrEmptyField(String field) {
+        return isFieldValid(field) ?  field = "0": field;
     }
 }
