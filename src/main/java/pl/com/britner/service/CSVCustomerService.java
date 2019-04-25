@@ -3,7 +3,7 @@ package pl.com.britner.service;
 import pl.com.britner.util.CSVReader;
 import pl.com.britner.util.FileReader;
 
-public class CustomerService {
+public class CSVCustomerService {
 
     // TODO: 25.04.2019 wybór miedzy csv a txt
     public String[] getDataRows() {

@@ -28,13 +28,6 @@ public class XMLReader extends FileReader {
             XMLStreamReader reader = factory.createXMLStreamReader(new FileInputStream(this.file));
 
             fillCustomer(reader);
-            for (Customer customer : customerList) {
-                System.out.println(customer.toString());
-            }
-
-            for (Contact contact : contactList) {
-                System.out.println(contact.toString());
-            }
 
         } catch (FileNotFoundException | XMLStreamException e) {
             e.printStackTrace();
@@ -45,19 +38,17 @@ public class XMLReader extends FileReader {
         while (reader.hasNext()) {
             int event = reader.next();
 
-            Contact tempContact = null;
+            Contact tempContact;
             switch (event) {
                 case XMLStreamConstants.START_ELEMENT: {
                     if ("person".equals(reader.getLocalName())) {
                         tempCustomer = new Customer();
+                        contactList = new ArrayList<>();
                         tempCustomer.setContactList(contactList);
                     }
                     if ("persons".equals(reader.getLocalName()))
                         customerList = new ArrayList<>();
 
-                    if ("contacts".equals(reader.getLocalName())) {
-                        contactList = new ArrayList<>();
-                    }
                     break;
                 }
                 case XMLStreamConstants.CHARACTERS: {
@@ -86,14 +77,14 @@ public class XMLReader extends FileReader {
                             tempCustomer.setCity(text);
                             break;
                         }
-                        case "phone": {
+                        case "email": {
                             tempContact = new Contact();
                             tempContact.setType(1);
                             tempContact.setContact(text);
                             contactList.add(tempContact);
                             break;
                         }
-                        case "email": {
+                        case "phone": {
                             tempContact = new Contact();
                             tempContact.setType(2);
                             tempContact.setContact(text);
@@ -112,6 +103,12 @@ public class XMLReader extends FileReader {
                 }
             }
         }
+    }
+
+    public List<Customer> getCustomerList() {
+        if(customerList == null)
+            readFile();
+        return customerList;
     }
 
 

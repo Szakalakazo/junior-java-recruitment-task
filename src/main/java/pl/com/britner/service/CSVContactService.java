@@ -3,7 +3,7 @@ package pl.com.britner.service;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ContactService {
+public class CSVContactService {
 
     private static final Pattern EMAIL_VALIDATOR =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
