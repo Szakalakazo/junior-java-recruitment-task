@@ -14,7 +14,9 @@ public class CSVReaderText extends TextFileReader {
 
         try (BufferedReader br = new BufferedReader(new FileReader(super.filePath))) {
             while ((line = br.readLine()) != null) {
-                strings.add(line);
+                if (line.length() > 0) {
+                    strings.add(line);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
