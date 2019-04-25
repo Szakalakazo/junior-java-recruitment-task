@@ -3,8 +3,7 @@ package pl.com.britner.util;
 
 import java.util.List;
 
-public interface ReadFile {
-
+public interface FileReader {
 
     List<String> readFile();
 
