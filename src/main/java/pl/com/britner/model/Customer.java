@@ -76,5 +76,14 @@ public class Customer implements Serializable {
         contactList.add(contact);
     }
 
-
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                ", city='" + city + '\'' +
+                ", contactList=" + contactList +
+                '}';
+    }
 }

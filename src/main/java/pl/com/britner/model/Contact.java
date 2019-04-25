@@ -45,4 +45,13 @@ public class Contact implements Serializable {
             return contact;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", type=" + type +
+                ", contact='" + contact + '\'' +
+                '}';
+    }
 }

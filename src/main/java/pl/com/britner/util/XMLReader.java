@@ -1,31 +1,23 @@
 package pl.com.britner.util;
 
-import org.w3c.dom.*;
-import org.xml.sax.SAXException;
+import pl.com.britner.model.Contact;
 import pl.com.britner.model.Customer;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class XMLReader extends FileReader {
 
-    private StringBuilder line = new StringBuilder();
-    private String[] components = {"name", "surname", "age", "city", "phone", "email", "jabber"};
-    List<Customer> customerList = null;
-    Customer tempCustomer = null;
-    String text = null;
+    private List<Customer> customerList = null;
+    private List<Contact> contactList = null;
+    private Customer tempCustomer = null;
+    private String text = null;
 
 
     @Override
@@ -35,60 +27,91 @@ public class XMLReader extends FileReader {
             XMLInputFactory factory = XMLInputFactory.newInstance();
             XMLStreamReader reader = factory.createXMLStreamReader(new FileInputStream(this.file));
 
-            while (reader.hasNext()) {
-                int event = reader.next();
-
-                switch (event) {
-                    case XMLStreamConstants.START_ELEMENT: {
-                        if ("person".equals(reader.getLocalName())) {
-                            tempCustomer = new Customer();
-                        }
-                        if ("person".equals(reader.getLocalName()))
-                            customerList = new ArrayList<>();
-                        break;
-                    }
-                    case XMLStreamConstants.CHARACTERS: {
-                        text = reader.getText().trim();
-                        break;
-                    }
-                    case XMLStreamConstants.END_ELEMENT: {
-                        switch (reader.getLocalName()) {
-                            case "person": {
-                                customerList.add(tempCustomer);
-                                break;
-                            }
-                            case "name": {
-                                tempCustomer.setName(text);
-                                break;
-                            }
-                            case "surname": {
-                                tempCustomer.setSurname(text);
-                                break;
-                            }
-                            case "age": {
-                                tempCustomer.setAge(Integer.parseInt(text));
-                                break;
-                            }
-                            case "city": {
-                                tempCustomer.setCity(text);
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
-
-            }
+            fillCustomer(reader);
             for (Customer customer : customerList) {
-                System.out.println(customer.getName());
-                System.out.println(customer.getSurname());
+                System.out.println(customer.toString());
+            }
+
+            for (Contact contact : contactList) {
+                System.out.println(contact.toString());
             }
 
         } catch (FileNotFoundException | XMLStreamException e) {
             e.printStackTrace();
         }
+    }
 
+    private void fillCustomer(XMLStreamReader reader) throws XMLStreamException {
+        while (reader.hasNext()) {
+            int event = reader.next();
 
+            Contact tempContact = null;
+            switch (event) {
+                case XMLStreamConstants.START_ELEMENT: {
+                    if ("person".equals(reader.getLocalName())) {
+                        tempCustomer = new Customer();
+                        tempCustomer.setContactList(contactList);
+                    }
+                    if ("persons".equals(reader.getLocalName()))
+                        customerList = new ArrayList<>();
+
+                    if ("contacts".equals(reader.getLocalName())) {
+                        contactList = new ArrayList<>();
+                    }
+                    break;
+                }
+                case XMLStreamConstants.CHARACTERS: {
+                    text = reader.getText().trim();
+                    break;
+                }
+                case XMLStreamConstants.END_ELEMENT: {
+                    switch (reader.getLocalName()) {
+                        case "person": {
+                            customerList.add(tempCustomer);
+                            break;
+                        }
+                        case "name": {
+                            tempCustomer.setName(text);
+                            break;
+                        }
+                        case "surname": {
+                            tempCustomer.setSurname(text);
+                            break;
+                        }
+                        case "age": {
+                            tempCustomer.setAge(Integer.parseInt(text));
+                            break;
+                        }
+                        case "city": {
+                            tempCustomer.setCity(text);
+                            break;
+                        }
+                        case "phone": {
+                            tempContact = new Contact();
+                            tempContact.setType(1);
+                            tempContact.setContact(text);
+                            contactList.add(tempContact);
+                            break;
+                        }
+                        case "email": {
+                            tempContact = new Contact();
+                            tempContact.setType(2);
+                            tempContact.setContact(text);
+                            contactList.add(tempContact);
+                            break;
+                        }
+                        case "jabber": {
+                            tempContact = new Contact();
+                            tempContact.setType(3);
+                            tempContact.setContact(text);
+                            contactList.add(tempContact);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
     }
 
 
