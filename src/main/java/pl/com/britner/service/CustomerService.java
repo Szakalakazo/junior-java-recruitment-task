@@ -3,7 +3,6 @@ package pl.com.britner.service;
 import pl.com.britner.util.CSVReaderText;
 import pl.com.britner.util.TextFileReader;
 
-
 public class CustomerService {
 
     public String[] getDataRows() {
@@ -16,6 +15,6 @@ public class CustomerService {
     }
 
     public String replaceNullOrEmptyField(String field) {
-        return isFieldValid(field) ?  field = "0": field;
+        return isFieldValid(field) ? field = "0" : field;
     }
 }

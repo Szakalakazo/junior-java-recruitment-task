@@ -2,6 +2,7 @@ package pl.com.britner.repository;
 
 import pl.com.britner.model.Contact;
 import pl.com.britner.model.Customer;
+import pl.com.britner.service.ContactService;
 import pl.com.britner.service.CustomerService;
 
 import java.util.ArrayList;
@@ -10,78 +11,58 @@ import java.util.List;
 
 public class CustomerRepository {
 
-    private CustomerService service = new CustomerService();
+    private CustomerService customerService = new CustomerService();
+
+    private ContactService contactService = new ContactService();
 
     private List<Customer> customerList = new ArrayList<>();
 
-    private void createCustomerList() {
-        String[] dataRows = service.getDataRows();
-        for (String row : dataRows) {
-            String[] split = Arrays.copyOfRange(row.split(","), 0, 4);
+    private Customer tempCustomer;
 
-            Customer tempCustomer = new Customer.customerBuilder()
-                    .name(split[0])
-                    .surname(split[1])
-                    .age(Integer.valueOf(service.replaceNullOrEmptyField(split[2])))
-                    .buildCustomer();
-            customerList.add(tempCustomer);
+    private Contact tempContact;
+
+    private String[] dataRows = customerService.getDataRows();
+
+
+    private void fillCustomerList() {
+        for (String dataRow : dataRows) {
+            String[] customerDetails = Arrays.copyOfRange(dataRow.split(","), 0, 4);
+            String[] customerContacts = Arrays.copyOfRange(dataRow.split(","), 4, (dataRow.split(",")).length);
+
+            createCustomer(customerDetails);
+            createContact(customerContacts);
+            addCustomer(tempCustomer);
+        }
+    }
+
+    private void createCustomer(String[] customerDetails) {
+        tempCustomer = new Customer.customerBuilder()
+                .name(customerDetails[0])
+                .surname(customerDetails[1])
+                .age(Integer.valueOf(customerService.replaceNullOrEmptyField(customerDetails[2])))
+                .buildCustomer();
+    }
+
+    private void createContact(String[] contacts) {
+        for (String contact : contacts) {
+            tempContact = new Contact.contactBuilder()
+                    .contact(contact)
+                    .type(contactService.getContactType(contact))
+                    .buildContact();
+            tempCustomer.addToContactList(tempContact);
+
         }
     }
 
 
     public List<Customer> getCustomerList() {
         if (customerList.isEmpty()) {
-            createCustomerList();
+            fillCustomerList();
         }
         return customerList;
     }
 
     public void addCustomer(Customer customer) {
         customerList.add(customer);
-    }
-
-    private void fillCustomerList() {
-        customerList.add(new Customer.customerBuilder()
-                .name("Bob")
-                .surname("Brink")
-                .city("NY")
-                .contactList(new Contact.contactBuilder()
-                        .type(1)
-                        .contact("bobBrink")
-                        .buildContact())
-                .buildCustomer());
-
-        customerList.add(new Customer.customerBuilder()
-                .name("Sue")
-                .surname("Fox")
-                .age(26)
-                .city("Los Santos")
-                .contactList(new Contact.contactBuilder()
-                        .type(1)
-                        .contact("SueFOX.com.pl")
-                        .buildContact())
-                .contactList(new Contact.contactBuilder()
-                        .type(1)
-                        .contact("666-999-888")
-                        .buildContact())
-                .buildCustomer());
-
-        customerList.add(new Customer.customerBuilder()
-                .name("Arya")
-                .surname("Stark")
-                .age(16)
-                .city("Winterloo")
-                .contactList(new Contact.contactBuilder()
-                        .type(3)
-                        .contact("arya@stark.com.pl")
-                        .buildContact())
-                .buildCustomer());
-
-        customerList.add(new Customer.customerBuilder()
-                .id(3L)
-                .contactList(new Contact.contactBuilder()
-                        .contact("555-555")
-                        .buildContact())
-                .buildCustomer());
     }
 }
