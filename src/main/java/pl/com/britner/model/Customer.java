@@ -56,9 +56,6 @@ public class Customer implements Serializable {
         }
 
         public customerBuilder contactList(Contact contact) {
-            if (contactList.isEmpty()) {
-                contactList = new ArrayList<>();
-            }
             contactList.add(contact);
             return this;
         }
@@ -74,4 +71,10 @@ public class Customer implements Serializable {
             return customer;
         }
     }
+
+    public void addToContactList(Contact contact) {
+        contactList.add(contact);
+    }
+
+
 }
