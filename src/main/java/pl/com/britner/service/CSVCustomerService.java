@@ -1,13 +1,14 @@
 package pl.com.britner.service;
 
+import pl.com.britner.transfer.Transfer;
 import pl.com.britner.util.CSVReader;
-import pl.com.britner.util.FileReader;
 
-public class CSVCustomerService {
+import java.io.File;
 
-    // TODO: 25.04.2019 wybór miedzy csv a txt
+public class CSVCustomerService  {
+
     public String[] getDataRows() {
-        FileReader fileReader = new CSVReader();
+        CSVReader fileReader = new CSVReader();
         return fileReader.getTextList().toArray(new String[0]);
     }
 

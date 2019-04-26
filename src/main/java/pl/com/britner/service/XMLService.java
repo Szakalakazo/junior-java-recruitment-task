@@ -4,16 +4,20 @@ import pl.com.britner.dao.CustomerDAO;
 import pl.com.britner.model.Customer;
 import pl.com.britner.util.XMLReader;
 
+import java.io.File;
 import java.util.List;
 
 public class XMLService {
 
-    private XMLReader reader = new XMLReader();
+    private List<Customer> customerList;
 
-    public void insertDoDB(List<Customer> customerList) {
-        CustomerDAO.insertCustomer(customerList);
+    public void start(File file) {
+        XMLReader reader = new XMLReader();
+        customerList = reader.getCustomerList(file);
+        insertDoDB();
     }
 
-
-
+    private void insertDoDB() {
+        CustomerDAO.insertCustomer(customerList);
+    }
 }

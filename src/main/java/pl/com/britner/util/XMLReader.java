@@ -7,6 +7,7 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -19,11 +20,11 @@ public class XMLReader extends FileReader {
 
 
     @Override
-    public void readFile() {
+    public void readFile(File file) {
         try {
 
             XMLInputFactory factory = XMLInputFactory.newInstance();
-            XMLStreamReader reader = factory.createXMLStreamReader(new FileInputStream(this.file));
+            XMLStreamReader reader = factory.createXMLStreamReader(new FileInputStream(file));
 
             fillCustomer(reader);
 
@@ -103,133 +104,9 @@ public class XMLReader extends FileReader {
         }
     }
 
-    public List<Customer> getCustomerList() {
+    public List<Customer> getCustomerList(File file) {
         if(customerList == null)
-            readFile();
+            readFile(file);
         return customerList;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*@Override
-    public void readFile() {
-
-        try {
-
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            factory.setValidating(false);
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(this.file);
-
-            NodeList nodeList = doc.getElementsByTagName("person");
-            int num = nodeList.getLength();
-
-            for (int i = 0; i < num; i++) {
-                Element node = (Element) nodeList.item(i);
-                listAllAttributes(node);
-            }
-        } catch (ParserConfigurationException | SAXException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void listAllAttributes(Element element) {
-        System.out.println("List attributes for nodes: " + element);
-
-        NamedNodeMap attributes = element.getAttributes();
-
-        int numAttrs = attributes.getLength();
-
-        for (int i = 0; i < numAttrs; i++) {
-            Attr item = (Attr) attributes.item(i);
-
-            String attrName = item.getNodeName();
-            String attrValue = item.getNodeValue();
-
-            System.out.println("Found attribute: " + attrName + " with value: " + attrValue);
-        }
-    }
-
-    private boolean doesNodeMatch(String[] components, Node node) {
-        for (String component : components) {
-            String stringNode = node.
-                    toString().
-                    replaceAll("[\\[\\]:]", "").
-                    replaceAll("\\ null\\b", "");
-
-            if (stringNode.equals(component)) {
-                *//*Element element = (Element) node;
-                String textContent =
-                        element.getElementsByTagName(component).item(0).getTextContent();
-                line.append(textContent).append(",");*//*
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void isNodeEmpty(String[] components, Node node) {
-        if (node.getNodeType() == Node.ELEMENT_NODE) {
-            Element element = (Element) node;
-            Arrays.stream(components).forEachOrdered(component -> {
-                Node item = element.getElementsByTagName(component).item(0);
-                if (item != null) {
-                    String textContent = element.getElementsByTagName(component).item(0).getTextContent();
-                    line.append(textContent).append(",");
-                }
-            });
-            line.append("\n");
-        }
-    }*/
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

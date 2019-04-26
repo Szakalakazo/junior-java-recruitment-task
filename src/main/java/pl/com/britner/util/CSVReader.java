@@ -9,23 +9,21 @@ public class CSVReader extends FileReader {
     private List<String> strings = new ArrayList<>();
 
     @Override
-    public void readFile() {
+    public void readFile(File file) {
         String line;
 
-        try (BufferedReader br = new BufferedReader(new java.io.FileReader(super.filePath))) {
-            while ((line = br.readLine()) != null) {
+        try (BufferedReader br = new BufferedReader(new java.io.FileReader(file))) {
+            while ((line = br.readLine()) != null)
                 if (line.length() > 0) {
-                    strings.add(line);
-                }
+                strings.add(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @Override
-    public List<String> getTextList() {
-        readFile();
+    public List<String> getTextList(File file) {
+        readFile(file);
         return strings;
     }
 }

@@ -28,4 +28,14 @@ public class DBConnection {
         }
         return myConnection;
     }
+
+    public static void closeConnection() {
+        try {
+            myConnection.close();
+        } catch (SQLException e) {
+            System.out.println("could not close connection");
+            System.out.println("SQL state: " + e.getSQLState());
+            e.printStackTrace();
+        }
+    }
 }
