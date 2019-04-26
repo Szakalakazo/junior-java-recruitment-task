@@ -14,7 +14,7 @@ public class FileTypeDeterminer {
         if (!file.exists()) {
             System.out.println("FILE DOES NOT EXIST.");
         }
-        if (determineFileType(file).equalsIgnoreCase("txt")) {
+        if (determineFileType(file).equalsIgnoreCase("csv") || determineFileType(file).equalsIgnoreCase("txt")) {
             Transfer transfer = new CSVTransfer();
             transfer.loadToDB(file);
         } else if (determineFileType(file).equalsIgnoreCase("xml")) {

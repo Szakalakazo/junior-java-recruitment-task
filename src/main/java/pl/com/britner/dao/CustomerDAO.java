@@ -32,6 +32,7 @@ public class CustomerDAO extends CommonDAO {
                 exc.printStackTrace();
             }
         }
+        System.out.println("Data transfer completed.");
     }
 
     private static void insertContact(Customer customer, PreparedStatement statement) throws SQLException {

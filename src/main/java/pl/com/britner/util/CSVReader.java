@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CSVReader extends FileReader {
 
-    private List<String> strings = new ArrayList<>();
+    private final List<String> strings = new ArrayList<>();
 
     @Override
     void readFile(File file) {

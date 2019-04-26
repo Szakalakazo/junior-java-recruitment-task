@@ -28,7 +28,7 @@ public class Customer implements Serializable {
         private String name;
         private String surname;
         private String city;
-        private List<Contact> contactList = new ArrayList<>();
+        private final List<Contact> contactList = new ArrayList<>();
 
         public customerBuilder id(Long id) {
             this.id = id;

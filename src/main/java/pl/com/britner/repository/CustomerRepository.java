@@ -16,11 +16,11 @@ public class CustomerRepository {
 
     private Customer tempCustomer;
 
-    private List<Customer> customerList = new ArrayList<>();
+    private final List<Customer> customerList = new ArrayList<>();
 
-    private CSVContactService CSVContactService = new CSVContactService();
+    private final CSVContactService CSVContactService = new CSVContactService();
 
-    private CSVCustomerService CSVCustomerService = new CSVCustomerService();
+    private final CSVCustomerService CSVCustomerService = new CSVCustomerService();
 
     public void setFile(File file) {
         this.file = file;
