@@ -12,7 +12,7 @@ public class CSVContactService {
             Pattern.compile("^\\d{9}$", Pattern.CASE_INSENSITIVE);
 
     private static final Pattern JABBER_VALIDATOR =
-            Pattern.compile("^(?:([^@/<>'\"]+)@)?([^@/<>'\"]+)(?:/([^<>'\"]*))?$", Pattern.CASE_INSENSITIVE);
+            Pattern.compile("^.+[@].+[\\.].+[/].+$", Pattern.CASE_INSENSITIVE);
 
     public int getContactType(String pattern) {
        if (doesMatchEmail(pattern)) return 1;
