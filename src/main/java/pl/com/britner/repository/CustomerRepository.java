@@ -12,7 +12,7 @@ import java.util.List;
 
 public class CustomerRepository {
 
-    File file;
+    private File file;
 
     private Customer tempCustomer;
 
@@ -22,14 +22,12 @@ public class CustomerRepository {
 
     private CSVCustomerService CSVCustomerService = new CSVCustomerService();
 
-    private String[] dataRows;
-
     public void setFile(File file) {
         this.file = file;
     }
 
     private void fillCustomerList() {
-        dataRows  = CSVCustomerService.getDataRows(file);
+        String[] dataRows = CSVCustomerService.getDataRows(file);
         for (String dataRow : dataRows) {
             String[] customerDetails = Arrays.copyOfRange(dataRow.split(","), 0, 4);
             String[] customerContacts = Arrays.copyOfRange(dataRow.split(","), 4, (dataRow.split(",")).length);

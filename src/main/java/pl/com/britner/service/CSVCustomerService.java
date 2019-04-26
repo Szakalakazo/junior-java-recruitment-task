@@ -1,6 +1,5 @@
 package pl.com.britner.service;
 
-import pl.com.britner.transfer.Transfer;
 import pl.com.britner.util.CSVReader;
 
 import java.io.File;

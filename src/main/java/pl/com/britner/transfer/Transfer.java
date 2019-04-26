@@ -2,7 +2,7 @@ package pl.com.britner.transfer;
 
 import java.io.File;
 
-public interface Transfer {
+interface Transfer {
 
     void loadToDB(File file);
 

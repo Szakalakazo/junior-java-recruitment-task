@@ -9,7 +9,7 @@ public class CSVReader extends FileReader {
     private List<String> strings = new ArrayList<>();
 
     @Override
-    public void readFile(File file) {
+    void readFile(File file) {
         String line;
 
         try (BufferedReader br = new BufferedReader(new java.io.FileReader(file))) {

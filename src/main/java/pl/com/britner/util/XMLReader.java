@@ -20,7 +20,7 @@ public class XMLReader extends FileReader {
 
 
     @Override
-    public void readFile(File file) {
+    void readFile(File file) {
         try {
 
             XMLInputFactory factory = XMLInputFactory.newInstance();

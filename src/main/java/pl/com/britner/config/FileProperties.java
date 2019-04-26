@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class FileProperties {
+class FileProperties {
 
     private static Properties getProperties() {
         String propertiesPath = "src/main/resources/file.properties";
