@@ -7,9 +7,9 @@ import java.io.File;
 
 public class CSVCustomerService  {
 
-    public String[] getDataRows() {
+    public String[] getDataRows(File file) {
         CSVReader fileReader = new CSVReader();
-        return fileReader.getTextList().toArray(new String[0]);
+        return fileReader.getTextList(file).toArray(new String[0]);
     }
 
     public boolean isFieldValid(String field) {

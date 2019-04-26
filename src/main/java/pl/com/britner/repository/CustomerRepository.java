@@ -5,11 +5,14 @@ import pl.com.britner.model.Customer;
 import pl.com.britner.service.CSVContactService;
 import pl.com.britner.service.CSVCustomerService;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class CustomerRepository {
+
+    File file;
 
     private Customer tempCustomer;
 
@@ -19,9 +22,14 @@ public class CustomerRepository {
 
     private CSVCustomerService CSVCustomerService = new CSVCustomerService();
 
-    private String[] dataRows = CSVCustomerService.getDataRows();
+    private String[] dataRows;
+
+    public void setFile(File file) {
+        this.file = file;
+    }
 
     private void fillCustomerList() {
+        dataRows  = CSVCustomerService.getDataRows(file);
         for (String dataRow : dataRows) {
             String[] customerDetails = Arrays.copyOfRange(dataRow.split(","), 0, 4);
             String[] customerContacts = Arrays.copyOfRange(dataRow.split(","), 4, (dataRow.split(",")).length);
