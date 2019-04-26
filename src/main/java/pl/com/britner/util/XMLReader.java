@@ -14,8 +14,6 @@ import java.util.List;
 
 public class XMLReader extends FileReader {
 
-    private List<Customer> customerList = null;
-    private List<Contact> contactList = null;
     private Customer tempCustomer = null;
     private String text = null;
 
