@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class DBProperties {
 
-    private static Properties getProperties() {
+    private static Properties getPropertiesFromFile() {
         String propertiesPath = "src/main/resources/db.properties";
         Properties properties = new Properties();
         try {
@@ -19,22 +19,22 @@ public class DBProperties {
     }
 
     public static String getUrl() {
-        return getProperties().getProperty("url");
+        return getPropertiesFromFile().getProperty("url");
     }
 
     public static String getPassword() {
-        return getProperties().getProperty("password");
+        return getPropertiesFromFile().getProperty("password");
     }
 
     public static String getUser() {
-        return getProperties().getProperty("user");
+        return getPropertiesFromFile().getProperty("user");
     }
 
     public static String getCustomerTableName() {
-        return getProperties().getProperty("customer-table");
+        return getPropertiesFromFile().getProperty("customer-table");
     }
 
     public static String getContactTableName() {
-        return getProperties().getProperty("contact-table");
+        return getPropertiesFromFile().getProperty("contact-table");
     }
 }

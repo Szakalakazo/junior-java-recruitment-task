@@ -8,19 +8,23 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    private Connection myConnection;
+    private static Connection myConnection;
 
-    public Connection getMyConnection() {
-
+    private static void createConnection() {
         try {
             String url = DBProperties.getUrl();
             String password = DBProperties.getPassword();
             String user = DBProperties.getUser();
-
             myConnection = DriverManager.getConnection(url, user, password);
         } catch (SQLException exc) {
             System.out.println("Unable to create connection with DB.");
-            exc.printStackTrace();
+            System.out.println("SQL EXCEPTION: " + exc.getMessage());
+        }
+    }
+
+    public static Connection getMyConnection(){
+        if(myConnection == null) {
+            createConnection();
         }
         return myConnection;
     }

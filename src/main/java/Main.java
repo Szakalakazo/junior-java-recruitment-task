@@ -11,12 +11,12 @@ class Main {
         CustomerRepository repository = new CustomerRepository();
 
 
-//        CustomerDAO.insertCustomer(repository.getCustomerList());
+        CustomerDAO.insertCustomer(repository.getCustomerList());
 
 /*        XMLReader xmlReader = new XMLReader();
         xmlReader.readFile();*/
-        XMLService service = new XMLService();
+        /*XMLService service = new XMLService();
         XMLReader reader = new XMLReader();
-        service.insertDoDB(reader.getCustomerList());
+        service.insertDoDB(reader.getCustomerList());*/
     }
 }
